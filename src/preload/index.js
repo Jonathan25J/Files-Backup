@@ -1,8 +1,11 @@
-import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { contextBridge, ipcRenderer } from 'electron'
 
-// Custom APIs for renderer
-const api = {}
+const api = {
+  getProfiles: () => ipcRenderer.send('get-profiles'),
+  addProfile: (profile) => ipcRenderer.invoke('add-profile', profile),
+  removeProfile: (profile) => ipcRenderer.invoke('remove-profile', profile)
+}
 
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
