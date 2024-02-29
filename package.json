@@ -1,9 +1,9 @@
 {
-  "name": "file-backup",
+  "name": "files-backup",
   "version": "1.0.0",
-  "description": "A minimal Electron application with JavaScript",
+  "description": "This application make it possible to backup files",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "jonaqhan",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
