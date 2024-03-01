@@ -1,4 +1,4 @@
-# file-backup
+# files-backup
 
 A minimal Electron application with JavaScript
 

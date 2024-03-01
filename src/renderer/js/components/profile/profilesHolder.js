@@ -21,6 +21,7 @@ export class ProfilesHolder extends LitElement {
 
     firstUpdated() {
         super.firstUpdated()
+        this._fetchProfiles()
     }
 
     disconnectedCallback() {
@@ -30,7 +31,7 @@ export class ProfilesHolder extends LitElement {
     render() {
         return html`<div class="container">
         <div class="menu">
-        <a href="" @click="${this._showModal}" class="add-btn">
+        <a href="" @click="${this._addProfile}" class="add-btn">
          <img src="../../assets/images/icons/add-btn.png" alt="Add profile">
          </a>
         </div>
@@ -41,9 +42,22 @@ export class ProfilesHolder extends LitElement {
     `
     }
 
-    _showModal(e) {
+    async _fetchProfiles() {
+        const data = await window.electron.ipcRenderer.invoke('get-profiles')
+        data.profiles.forEach(profile => {
+            const widget = document.createElement('profile-widget');
+            widget.setAttribute('id', profile.id);
+            widget.setAttribute('name', profile.name);
+            widget.setAttribute('location', profile.location);
+            this.profiles = [...this.profiles, widget]
+        });
+    }
+
+    async _addProfile(e) {
         e.preventDefault();
         const profile = document.createElement('profile-widget');
+        const data = await window.electron.ipcRenderer.invoke('create-profile-uuid')
+        profile.setAttribute('id', data.id);
         this.profiles = [...this.profiles, profile]
     }
 

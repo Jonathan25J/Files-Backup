@@ -3,8 +3,11 @@ export class Profile extends LitElement {
 
     static get properties() {
         return {
-            profiles: {
-                type: Array, attribute: false
+            name: {
+                type: String
+            },
+            location: { 
+                type: String 
             }
         }
     }
@@ -35,11 +38,11 @@ export class Profile extends LitElement {
         </div>
         <div class="name">
         <label for="name">Name</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" value="${this.name}">
         </div>
         <div class="location">
         <label for="location">Location</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="location" name="location" value="${this.location}">
         </div>
         <div class="restore-backup">
         <div class="restore">
