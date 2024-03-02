@@ -43,7 +43,7 @@ export class ProfilesHolder extends LitElement {
     }
 
     async _fetchProfiles() {
-        const data = await window.electron.ipcRenderer.invoke('get-profiles')
+        const data = await window.api.getProfiles()
         data.profiles.forEach(profile => {
             const widget = document.createElement('profile-widget');
             widget.setAttribute('id', profile.id);
@@ -56,8 +56,9 @@ export class ProfilesHolder extends LitElement {
     async _addProfile(e) {
         e.preventDefault();
         const profile = document.createElement('profile-widget');
-        const data = await window.electron.ipcRenderer.invoke('create-profile-uuid')
+        const data = await window.api.createProfileUuid()
         profile.setAttribute('id', data.id);
+        profile.setAttribute('new', '');
         this.profiles = [...this.profiles, profile]
     }
 

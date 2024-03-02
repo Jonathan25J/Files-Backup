@@ -1,4 +1,5 @@
 import { LitElement, css, html } from 'lit-element';
+import '../modal.js';
 export class Profile extends LitElement {
 
     static get properties() {
@@ -6,8 +7,8 @@ export class Profile extends LitElement {
             name: {
                 type: String
             },
-            location: { 
-                type: String 
+            location: {
+                type: String
             }
         }
     }
@@ -36,11 +37,11 @@ export class Profile extends LitElement {
         <img src="../../assets/images/icons/remove-btn.png" alt="Remove profile">
         </a>
         </div>
-        <div class="name">
+        <div class="name" @change="${this._patchOrPostProfile}">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" value="${this.name}">
         </div>
-        <div class="location">
+        <div class="location" @change="${this._patchOrPostProfile}">
         <label for="location">Location</label>
         <input type="text" id="location" name="location" value="${this.location}">
         </div>
@@ -61,9 +62,40 @@ export class Profile extends LitElement {
     `
     }
 
+    _patchOrPostProfile() {
+        let profile = {
+            id: this.id,
+            name: this.shadowRoot.querySelector('#name').value,
+            location: this.shadowRoot.querySelector('#location').value
+        }
+
+        if (this.getAttribute('new') != null) {
+            window.api.addProfile(profile)
+            this.removeAttribute('new')
+        } else {
+            window.api.updateProfile(profile)
+        }
+    }
+
     _removeModal(e) {
         e.preventDefault();
+        const modal = document.createElement('modal-widget')
+        modal.setPrompt("delete profile", "Are you sure you want to delete this profile?", this._deleteProfile.bind(this))
+    }
 
+    _deleteProfile() {
+        const modal = document.querySelector('modal-widget')
+        if (this.getAttribute('new') == null) {
+            window.api.removeProfile(this.id).then((err) => {
+                if (err == null) {
+                    modal.remove()
+                    this.remove()
+                }
+            })
+        } else {
+            modal.remove()
+            this.remove()
+        }
     }
 
     _restoreModal(e) {
@@ -75,7 +107,6 @@ export class Profile extends LitElement {
         e.preventDefault();
 
     }
-
 
     static get styles() {
         return css`

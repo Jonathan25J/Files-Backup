@@ -2,9 +2,11 @@ import { electronAPI } from '@electron-toolkit/preload'
 import { contextBridge, ipcRenderer } from 'electron'
 
 const api = {
-  getProfiles: () => ipcRenderer.send('get-profiles'),
+  getProfiles: () => ipcRenderer.invoke('get-profiles'),
+  createProfileUuid: () => ipcRenderer.invoke('create-profile-uuid'),
   addProfile: (profile) => ipcRenderer.invoke('add-profile', profile),
-  removeProfile: (profile) => ipcRenderer.invoke('remove-profile', profile)
+  updateProfile: (profile) => ipcRenderer.invoke('update-profile', profile),
+  removeProfile: (uuid) => ipcRenderer.invoke('remove-profile', uuid)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
