@@ -1,4 +1,5 @@
 import { LitElement, css, html } from 'lit-element';
+import '../buttonModal.js';
 import '../modal.js';
 export class Profile extends LitElement {
 
@@ -105,7 +106,30 @@ export class Profile extends LitElement {
 
     _backupModal(e) {
         e.preventDefault();
+        const buttonModal = document.createElement('button-modal')
+        buttonModal.setAttribute('title', 'backup-slots')
+        window.api.getBackupSlotsStatuses(this.id).then((statuses) => {
+            let buttons = []
+            let index = 1
+            statuses.forEach((status) => {
+                let currentIndex = index
+                buttons[index] = { color: "", status: status, function: () => this._createBackup(this.id, currentIndex) }
+                index++
+            })
+            buttonModal.createButtons(buttons)
+        })
 
+
+    }
+
+    _createBackup(id, slot) {
+        let slotMessage = document.querySelector('button-modal').shadowRoot.querySelector(`#backup-slots-${slot}`).querySelector('p')
+        window.api.backup(id, slot).then(() => {
+
+        }).catch((error) => {
+            // electron's fault
+            slotMessage.innerHTML = error.message.split(':')[2].trim()
+        })
     }
 
     static get styles() {
