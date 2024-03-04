@@ -18,7 +18,7 @@ export const getBackupSlotsStatuses = ipcMain.handle('get-backup-slots-statuses'
             slotsAmount = slotsAmount <= 1 ? 6 : slotsAmount
 
             for (let i = 1; i < slotsAmount; i++) {
-                statusSlots.push(dataManagement.pathExists(path.join(slotsPath, `/${i}`)) ? dataManagement.getDateFromPath(slotsPath) : 'Empty')
+                statusSlots.push(dataManagement.pathExists(path.join(slotsPath, `/${i}`)) ? dataManagement.getDateFromPath(path.join(slotsPath, `/${i}`)) : 'Empty')
             }
 
             resolve(statusSlots)
@@ -54,13 +54,16 @@ export const backup = ipcMain.handle('backup', (req, uuid, slot) => {
                         }
 
                         if (isDirectory) {
-                            dataManagement.copyDirectory(location, slotPath)
-                            resolve(dataManagement.getDateFromPath(slotPath))
+                            dataManagement.copyDirectory(location, slotPath, (err) => {
+                                if (err) reject(err)
+                                resolve(dataManagement.getDateFromPath(slotPath))
+                            })
                         } else {
-                            // TODO: making copying file also works
-                            // dataManagement.copyFile(location, slotPath)
+                            dataManagement.copyFile(location, slotPath, (err) => {
+                                if (err) reject(err)
+                                resolve(dataManagement.getDateFromPath(slotPath))
+                            })
                         }
-
                     })
 
                 } else {

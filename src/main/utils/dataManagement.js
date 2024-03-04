@@ -38,16 +38,16 @@ class DataManagement {
         });
     }
 
-    getDateFromPath(path) {
+    getDateFromPath(givenPath) {
         try {
-            const stats = fs.statSync(path);
-            return stats.birthtime.toLocaleString(app.getSystemLocale(), { 
-                hour: 'numeric', 
-                minute: 'numeric', 
-                second: 'numeric', 
-                day: 'numeric', 
-                month: 'numeric', 
-                year: 'numeric' 
+            const stats = fs.statSync(givenPath);
+            return stats.birthtime.toLocaleString(app.getSystemLocale(), {
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                day: 'numeric',
+                month: 'numeric',
+                year: 'numeric'
             });
         } catch (err) {
             return undefined;
@@ -58,22 +58,28 @@ class DataManagement {
         rimraf(path);
     }
 
-    copyDirectory(source, destination) {
+    async copyDirectory(source, destination, callback) {
         rimraf(path.join(destination), { glob: false }).then(() => {
             fse.ensureDir(destination).then(() => {
                 fs.cp(source, destination, { recursive: true }, (err) => {
-                    if (err != null)
-                        console.log(err)
+                    if (err)
+                        callback(err)
+
+                    callback()
                 })
             })
         })
     }
 
-    copyFile(source, destination) {
+    copyFile(source, destination, callback) {
         rimraf(path.join(destination), { glob: false }).then(() => {
-            fs.cp(source, destination, (err) => {
-                if (err != null)
-                    console.log(err)
+            fse.ensureDir(destination).then(() => {
+                const fileName = path.basename(source);
+                fs.cp(source, path.join(destination, fileName), (err) => {
+                    if (err)
+                        callback(err)
+                    callback()
+                })
             })
         })
     }
