@@ -2,6 +2,7 @@ import fs from 'fs';
 import fse from 'fs-extra';
 import path from 'path';
 import { rimraf } from 'rimraf';
+import app from '../index.js';
 class DataManagement {
 
     constructor() {
@@ -37,11 +38,33 @@ class DataManagement {
         });
     }
 
+    getDateFromPath(path) {
+        try {
+            const stats = fs.statSync(path);
+            return stats.birthtime.toLocaleString(app.getSystemLocale(), { 
+                hour: 'numeric', 
+                minute: 'numeric', 
+                second: 'numeric', 
+                day: 'numeric', 
+                month: 'numeric', 
+                year: 'numeric' 
+            });
+        } catch (err) {
+            return undefined;
+        }
+    }
+
+    removePath(path) {
+        rimraf(path);
+    }
+
     copyDirectory(source, destination) {
         rimraf(path.join(destination), { glob: false }).then(() => {
-            fs.cp(source, destination, { recursive: true }, (err) => {
-                if (err != null)
-                    console.log(err)
+            fse.ensureDir(destination).then(() => {
+                fs.cp(source, destination, { recursive: true }, (err) => {
+                    if (err != null)
+                        console.log(err)
+                })
             })
         })
     }

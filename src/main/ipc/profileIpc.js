@@ -92,7 +92,8 @@ export const removeProfile = ipcMain.handle('remove-profile', (req, uuid) => {
                         reject(err);
                         return;
                     }
-                    // TODO: remove profile data folder
+                    const profilePath = path.join(path.resolve(), `resources/profiles/${uuid}`)
+                    dataManagement.removePath(profilePath)
                     resolve();
                 })
 

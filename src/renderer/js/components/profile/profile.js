@@ -10,12 +10,18 @@ export class Profile extends LitElement {
             },
             location: {
                 type: String
+            },
+            slots: {
+                type: Number
             }
         }
     }
 
     constructor() {
         super()
+        this.name = ''
+        this.location = ''
+        this.slots = 5
     }
 
     connectedCallback() {
@@ -46,6 +52,10 @@ export class Profile extends LitElement {
         <label for="location">Location</label>
         <input type="text" id="location" name="location" value="${this.location}">
         </div>
+        <div class="slots" @change="${this._patchOrPostProfile}">
+        <label for="slots">Slots</label>
+        <input type="number" id="slots" name="slots" min=0 max=100 value="${this.slots}">
+        </div>
         <div class="restore-backup">
         <div class="restore">
         <a href="" @click="${this._restoreModal}" class="add-btn">
@@ -67,7 +77,8 @@ export class Profile extends LitElement {
         let profile = {
             id: this.id,
             name: this.shadowRoot.querySelector('#name').value,
-            location: this.shadowRoot.querySelector('#location').value
+            location: this.shadowRoot.querySelector('#location').value,
+            slots: this.shadowRoot.querySelector('#slots').value
         }
 
         if (this.getAttribute('new') != null) {
@@ -123,9 +134,10 @@ export class Profile extends LitElement {
     }
 
     _createBackup(id, slot) {
-        let slotMessage = document.querySelector('button-modal').shadowRoot.querySelector(`#backup-slots-${slot}`).querySelector('p')
-        window.api.backup(id, slot).then(() => {
-
+        let buttonModal = document.querySelector('button-modal')
+        let slotMessage = buttonModal.shadowRoot.querySelector(`#backup-slots-${slot}`).querySelector('p')
+        window.api.backup(id, slot).then((status) => {
+            slotMessage.innerHTML = status
         }).catch((error) => {
             // electron's fault
             slotMessage.innerHTML = error.message.split(':')[2].trim()
@@ -158,7 +170,7 @@ export class Profile extends LitElement {
             height: 3rem;
         }
 
-        .name, .location {
+        .name, .location, .slots {
             display: flex;
             gap: 1rem;
         }
@@ -187,7 +199,7 @@ export class Profile extends LitElement {
             height: 2.5rem;
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1280px) {
             .items {
                 flex-direction: row;
             }

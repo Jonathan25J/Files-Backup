@@ -49,6 +49,7 @@ export class ProfilesHolder extends LitElement {
             widget.setAttribute('id', profile.id);
             widget.setAttribute('name', profile.name);
             widget.setAttribute('location', profile.location);
+            widget.setAttribute('slots', profile.slots);
             this.profiles = [...this.profiles, widget]
         });
     }
@@ -128,7 +129,7 @@ export class ProfilesHolder extends LitElement {
         }
 
 
-        @media (min-width: 1024px) {
+        @media (min-width: 1280px) {
             profile-widget {
                 height: 6rem;
             }

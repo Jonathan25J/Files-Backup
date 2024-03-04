@@ -7,7 +7,7 @@ import { retrieveIpc } from './ipc/ipcHandler.js'
 function createWindow() {
 
   const mainWindow = new BrowserWindow({
-    width: 1100,
+    width: 1300,
     height: 670,
     show: false,
     autoHideMenuBar: true,
@@ -66,3 +66,5 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+export default app
