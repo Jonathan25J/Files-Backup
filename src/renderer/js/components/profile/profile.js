@@ -154,7 +154,7 @@ export class Profile extends LitElement {
 
     _createBackup(id, slot) {
         let buttonModal = document.querySelector('button-modal')
-        let button = buttonModal.shadowRoot.querySelector(`#b-${this.name}-${slot}`)
+        let button = buttonModal.shadowRoot.querySelector(`#b-${this.name.replaceAll(' ', '-')}-${slot}`)
         let slotMessage = button.querySelector('p')
         button.disabled = true
         window.api.backup(id, slot).then((status) => {

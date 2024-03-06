@@ -48,7 +48,7 @@ export class ButtonModal extends LitElement {
             if (Object.hasOwn(functionMap, title)) {
                 // ?style not working?
                 const buttonStyle = functionMap[title].color ? `background-color: ${functionMap[title].color};` : '';
-                this.buttons = [...this.buttons, html`<button id="b-${this.title}-${title}" style="${buttonStyle}" @click="${functionMap[title].function}">
+                this.buttons = [...this.buttons, html`<button id="b-${this.title.replaceAll(' ', '-')}-${title}" style="${buttonStyle}" @click="${functionMap[title].function}">
                 ${title}
                 <p>${functionMap[title].status}</p>
                 </button>`]
