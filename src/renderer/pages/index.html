@@ -7,14 +7,14 @@
   <meta http-equiv="Content-Security-Policy"
     content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:" />
   <link href="../assets/styles/index/components/profiles.css" type="text/css" rel="stylesheet" />
-  <link href="../assets/styles/theme.css" type="text/css" rel="stylesheet" />
+  <link id="themeSheet" href="../assets/styles/themes/default.css" type="text/css" rel="stylesheet" />
   <link href="../assets/styles/utils.css" type="text/css" rel="stylesheet" />
   <script type="module" src="../js/renderer.js"></script>
 </head>
 
 <body>
   <header class="header container">
-    <home-button></home-button>
+    <theme-switcher></theme-switcher>
     <p>Files Backup</p>
   </header>
   <main>

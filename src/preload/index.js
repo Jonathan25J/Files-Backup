@@ -12,6 +12,8 @@ const api = {
   openPath: (path) => ipcRenderer.invoke('path-open', path),
   pathExists: (path) => ipcRenderer.invoke('path-exists', path),
   getProfileFolder: (uuid) => ipcRenderer.invoke('profile-folder', uuid),
+  set: (location, value) => ipcRenderer.invoke('store', location, value),
+  get: (location) => ipcRenderer.invoke('get', location)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
