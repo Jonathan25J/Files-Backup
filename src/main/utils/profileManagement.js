@@ -1,7 +1,8 @@
 import path from 'path';
+import app from '../index.js';
 import { dataManagement } from "./dataManagement";
 
-const profilesPath = path.join(path.resolve(), 'resources/profiles/profiles.json');
+const profilesPath = path.join(app.getPath('userData'), 'data/profiles/profiles.json');
 class ProfileManagement {
 
     retrieveProfile(uuid, callback) {
@@ -25,3 +26,4 @@ class ProfileManagement {
 
 const profileManagement = new ProfileManagement();
 export { profileManagement };
+

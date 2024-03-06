@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
-import path from 'path';
+import app from '../index.js';
 
 export const appDirectory = ipcMain.handle('app-directory', () => {
-    return path.resolve()
+    return app.getPath('userData')
 })

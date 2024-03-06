@@ -1,13 +1,14 @@
 import { ipcMain } from 'electron';
 import path from 'path';
+import app from '../index.js';
 import { dataManagement } from '../utils/dataManagement';
 import { profileManagement } from '../utils/profileManagement';
 
-const profilesPath = path.join(path.resolve(), 'resources/profiles/profiles.json');
+const profilesPath = path.join(app.getPath('userData'), 'data/profiles/profiles.json');
 
 export const getBackupSlotsStatuses = ipcMain.handle('get-backup-slots-statuses', (req, uuid) => {
     return new Promise((resolve, reject) => {
-        const slotsPath = path.join(path.resolve(), `resources/profiles/${uuid}`);
+        const slotsPath = path.join(app.getPath('userData'), `data/profiles/${uuid}`);
 
         profileManagement.retrieveProfile(uuid, (err, profile) => {
             if (err) {
@@ -35,7 +36,7 @@ export const getBackupSlotsStatuses = ipcMain.handle('get-backup-slots-statuses'
 
 export const backup = ipcMain.handle('backup', (req, uuid, slot) => {
     return new Promise((resolve, reject) => {
-        const slotPath = path.join(path.resolve(), `resources/profiles/${uuid}/${slot}`);
+        const slotPath = path.join(app.getPath('userData'), `data/profiles/${uuid}/${slot}`);
 
         dataManagement.readData(profilesPath, (err, dataToBeParsed) => {
             if (err) {

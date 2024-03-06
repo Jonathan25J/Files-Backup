@@ -1,7 +1,6 @@
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { defineConfig, externalizeDepsPlugin } from 'electron-vite';
-import path from 'path';
 import copy from 'rollup-plugin-copy';
 
 export default defineConfig({
@@ -9,7 +8,7 @@ export default defineConfig({
     build: {
       rollupOptions: {
         input: {
-          index: path.join(path.resolve(), 'src/main/index.js'),
+          index: 'src/main/index.js',
         },
       }
     },
@@ -26,7 +25,7 @@ export default defineConfig({
     build: {
       rollupOptions: {
         input: {
-          pages: path.join(path.resolve(), 'src/renderer/pages/index.html')
+          pages: 'src/renderer/pages/index.html'
         }
       }
     }
