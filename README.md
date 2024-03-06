@@ -15,6 +15,6 @@ The reason for that's because restore will give certain risk and unpredictabilit
 
 # Images
 <div style="display: flex; gap: 40px; flex-direction: column; align-items: center;">
-    <img src="./markdown/images/profiles.png" width=1000 height=600 alt=profiles>
-    <img src="./markdown/images/slots.png" width=1000 height=600 alt=slots>
+    <img src="./markdown/images/profiles.png" width=1200 height=700 alt=profiles>
+    <img src="./markdown/images/slots.png" width=1200 height=700 alt=slots>
 </div>
