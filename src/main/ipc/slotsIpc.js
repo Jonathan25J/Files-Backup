@@ -10,7 +10,10 @@ export const getBackupSlotsStatuses = ipcMain.handle('get-backup-slots-statuses'
         const slotsPath = path.join(path.resolve(), `resources/profiles/${uuid}`);
 
         profileManagement.retrieveProfile(uuid, (err, profile) => {
-            if (err) reject(err);
+            if (err) {
+                reject(err);
+                return;
+            } 
 
             let statusSlots = []
             let slotsAmount = parseInt(profile.slots) + 1
@@ -56,12 +59,18 @@ export const backup = ipcMain.handle('backup', (req, uuid, slot) => {
 
                         if (isDirectory) {
                             dataManagement.copyDirectory(location, slotPath, (err) => {
-                                if (err) reject(err)
+                                if (err) {
+                                    reject(err);
+                                    return;
+                                }
                                 resolve(dataManagement.getDateFromPath(slotPath))
                             })
                         } else {
                             dataManagement.copyFile(location, slotPath, (err) => {
-                                if (err) reject(err)
+                                if (err) {
+                                    reject(err);
+                                    return;
+                                }
                                 resolve(dataManagement.getDateFromPath(slotPath))
                             })
                         }

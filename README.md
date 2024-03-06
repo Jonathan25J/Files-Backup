@@ -11,10 +11,11 @@ With this application is it possible to create backups for specific  ```files```
 It's possible to store up to a ```100``` slots
 
 This application doesn't provide a restore option, so you have to do it ```manually```.
-The reason for that's because restore will give certain risk and unpredictability. (risk of permanent removing necessary files)
+The reason for that's because restore will give certain risk and unpredictability (risk of permanent removing necessary files).
+The restore button in this case will only open your file explorer with the path to the slots and your path to backup
 
 # Images
 <div style="display: flex; gap: 40px; flex-direction: column; align-items: center;">
-    <img src="./markdown/images/profiles.png" width=1000 height=750 alt=profiles>
-    <img src="./markdown/images/slots.png" width=1000 height=750 alt=slots>
+    <img src="./markdown/images/profiles.png" width=1000 height=500 alt=profiles>
+    <img src="./markdown/images/slots.png" width=1000 height=500 alt=slots>
 </div>

@@ -139,6 +139,8 @@ export class Profile extends LitElement {
                 index++
             })
             buttonModal.createButtons(buttons)
+        }).catch((err) => {
+            console.log(err)
         })
 
 
@@ -151,12 +153,16 @@ export class Profile extends LitElement {
 
     _createBackup(id, slot) {
         let buttonModal = document.querySelector('button-modal')
-        let slotMessage = buttonModal.shadowRoot.querySelector(`#backup-slots-${slot}`).querySelector('p')
+        let button = buttonModal.shadowRoot.querySelector(`#backup-slots-${slot}`)
+        let slotMessage = button.querySelector('p')
+        button.disabled = true
         window.api.backup(id, slot).then((status) => {
             slotMessage.innerHTML = status
+            button.disabled = false
         }).catch((error) => {
             // electron's fault
             slotMessage.innerHTML = error.message.split(':')[2].trim()
+            button.disabled = false
         })
         const modal = document.querySelector('modal-widget')
         modal.remove()
