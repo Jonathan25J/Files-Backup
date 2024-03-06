@@ -16,7 +16,7 @@ The restore button in this case will only open your file explorer with the path 
 
 # Disclaimer
 
-This is a hobby project so the application ```doesn't update automatically```. To still retain your data you need to backup your ```resources/profiles``` directory.
+This is a hobby project so the application ```doesn't update automatically```. To still retain your data you need to backup your ```data/profiles``` directory.
 After you have done that you can safely install the new .exe and then restore the data into the same directory
 
 The exe doesn't have a signature, because of the same reason it doesn't update automatically. It's a hobby project.

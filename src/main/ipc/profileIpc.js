@@ -1,9 +1,10 @@
 import { ipcMain } from 'electron';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import app from '../index.js';
 import { dataManagement } from '../utils/dataManagement';
 
-const profilesPath = path.join(path.resolve(), 'resources/profiles/profiles.json');
+const profilesPath = path.join(app.getPath('userData'), 'data/profiles/profiles.json');
 
 export const getProfiles = ipcMain.handle('get-profiles', () => {
     return new Promise((resolve, reject) => {
@@ -92,7 +93,7 @@ export const removeProfile = ipcMain.handle('remove-profile', (req, uuid) => {
                         reject(err);
                         return;
                     }
-                    const profilePath = path.join(path.resolve(), `resources/profiles/${uuid}`)
+                    const profilePath = path.join(app.getPath('userData'), `data/profiles/${uuid}`)
                     dataManagement.removePath(profilePath)
                     resolve();
                 })
@@ -106,6 +107,6 @@ export const removeProfile = ipcMain.handle('remove-profile', (req, uuid) => {
 })
 
 export const getProfileFolder = ipcMain.handle('profile-folder', (req, uuid) => {
-    return path.join(path.resolve(), `resources/profiles/${uuid}`)
+    return path.join(app.getPath('userData'), `data/profiles/${uuid}`)
 })
 

@@ -1,16 +1,16 @@
 appId: com.electron.app
 productName: files-backup
 directories:
-  buildResources: build
+  builddata: build
 files:
   - '!**/.vscode/*'
   - '!src/*'
-  - '!resources/profiles/*'
+  - '!data/profiles/*'
   - '!electron.vite.config.{js,ts,mjs,cjs}'
   - '!{.eslintignore,.eslintrc.cjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
 asarUnpack:
-  - resources/**
+  - data/**
 win:
   executableName: files-backup
 nsis:

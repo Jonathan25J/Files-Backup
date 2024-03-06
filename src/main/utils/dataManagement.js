@@ -10,7 +10,7 @@ class DataManagement {
     }
 
     ensureProfilePaths() {
-        const profilesPath = path.join(path.resolve(), 'resources/profiles/profiles.json')
+        const profilesPath = path.join(app.getPath('userData'), 'data/profiles/profiles.json')
         if (!fs.existsSync(profilesPath))
             fse.ensureFile(profilesPath).then(() => {
                 const defaultJson = {
@@ -107,3 +107,4 @@ class DataManagement {
 }
 const dataManagement = new DataManagement();
 export { dataManagement };
+
