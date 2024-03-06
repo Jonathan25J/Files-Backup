@@ -57,7 +57,7 @@ export class Profile extends LitElement {
         </div>
         <div class="slots" @change="${this._patchOrPostProfile}">
         <label for="slots">Slots</label>
-        <input type="number" id="slots" name="slots" min=0 max=100 value="${this.slots}">
+        <input type="number" id="slots" name="slots" min=1 max=100 value="${this.slots}">
         </div>
         <div class="restore-backup">
         <div class="restore">
@@ -79,7 +79,7 @@ export class Profile extends LitElement {
     _patchOrPostProfile() {
         let profile = {
             id: this.id,
-            name: this.shadowRoot.querySelector('#name').value,
+            name: this.shadowRoot.querySelector('#name').value.trim(),
             location: this.shadowRoot.querySelector('#location').value,
             slots: this.shadowRoot.querySelector('#slots').value
         }
@@ -128,8 +128,9 @@ export class Profile extends LitElement {
 
     _backupModal(e) {
         e.preventDefault();
+        this.name = this.shadowRoot.querySelector('#name').value.trim()
         const buttonModal = document.createElement('button-modal')
-        buttonModal.setAttribute('title', 'backup-slots')
+        buttonModal.setAttribute('title', this.name)
         window.api.getBackupSlotsStatuses(this.id).then((statuses) => {
             let buttons = []
             let index = 1
@@ -153,7 +154,7 @@ export class Profile extends LitElement {
 
     _createBackup(id, slot) {
         let buttonModal = document.querySelector('button-modal')
-        let button = buttonModal.shadowRoot.querySelector(`#backup-slots-${slot}`)
+        let button = buttonModal.shadowRoot.querySelector(`#b-${this.name}-${slot}`)
         let slotMessage = button.querySelector('p')
         button.disabled = true
         window.api.backup(id, slot).then((status) => {
