@@ -5,6 +5,9 @@ export class Profile extends LitElement {
 
     static get properties() {
         return {
+            id: {
+                type: String
+            },
             name: {
                 type: String
             },
@@ -58,7 +61,7 @@ export class Profile extends LitElement {
         </div>
         <div class="restore-backup">
         <div class="restore">
-        <a href="" @click="${this._restoreModal}" class="add-btn">
+        <a href="" @click="${this._restoreWindows}" class="add-btn">
         <img src="../../assets/images/icons/restore-btn.png" alt="Restore files">
         </a>
         </div>
@@ -110,9 +113,11 @@ export class Profile extends LitElement {
         }
     }
 
-    _restoreModal(e) {
+    async _restoreWindows(e) {
         e.preventDefault();
-
+        window.api.openPath(this.shadowRoot.querySelector('#location').value)
+        const profileFolder = await window.api.getProfileFolder(this.id)
+        window.api.openPath(profileFolder)
     }
 
     _backupModal(e) {

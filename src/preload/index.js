@@ -8,7 +8,9 @@ const api = {
   updateProfile: (profile) => ipcRenderer.invoke('update-profile', profile),
   removeProfile: (uuid) => ipcRenderer.invoke('remove-profile', uuid),
   getBackupSlotsStatuses: (uuid) => ipcRenderer.invoke('get-backup-slots-statuses', uuid),
-  backup: (uuid, slot) => ipcRenderer.invoke('backup', uuid, slot)
+  backup: (uuid, slot) => ipcRenderer.invoke('backup', uuid, slot),
+  openPath: (path) => ipcRenderer.invoke('shell-open-path', path),
+  getProfileFolder: (uuid) => ipcRenderer.invoke('profile-folder', uuid),
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

@@ -105,3 +105,7 @@ export const removeProfile = ipcMain.handle('remove-profile', (req, uuid) => {
 
 })
 
+export const getProfileFolder = ipcMain.handle('profile-folder', (req, uuid) => {
+    return path.join(path.resolve(), `resources/profiles/${uuid}`)
+})
+
