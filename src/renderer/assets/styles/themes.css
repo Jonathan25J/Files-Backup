@@ -1,0 +1,55 @@
+:root {
+    --clr-primary-bg:  rgb(63, 63, 63);
+    --clr-primary-bg-dk:  rgb(46, 46, 46);
+    --clr-primary-bg-lt: rgb(95, 95, 95);
+
+    --clr-header: #d9d9d1;
+    --clr-menu-bg: rgb(79 79 79);
+    --clr-btn: rgb(63, 63, 63);
+    --clr-prompt-btn: rgb(78, 129, 165);
+
+    --clr-widget: #b1b0b0;
+    --clr-widget-dk: rgb(125 120 120);
+}
+
+.blue {
+    --clr-primary-bg: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+    --clr-primary-bg-dk: #69bed3;
+    --clr-primary-bg-lt: #a2e6f7;
+
+    --clr-header: #1c1c1b;
+    --clr-menu-bg: rgb(75 94 97);
+    --clr-btn: rgb(45 147 187);
+    --clr-prompt-btn: rgb(82 151 163);
+
+    --clr-widget: rgb(161 205 209);
+    --clr-widget-dk: rgb(105 172 241);
+}
+
+.pink {
+    --clr-primary-bg: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+    --clr-primary-bg-dk: #cf6897;
+    --clr-primary-bg-lt: #ff82ba;
+
+    --clr-header: #ffffff;
+    --clr-menu-bg: rgb(111 110 149);
+    --clr-btn: rgb(223 99 225);
+    --clr-prompt-btn: rgb(205 105 197);
+
+    --clr-widget: rgb(231 135 255);
+    --clr-widget-dk: rgb(224 103 255);
+}
+
+.chrome {
+    --clr-primary-bg: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+    --clr-primary-bg-dk: rgb(39 122 141);
+    --clr-primary-bg-lt: #04e9ec;
+
+    --clr-header: #ffffff;
+    --clr-menu-bg: rgb(0 0 0 / 33%);
+    --clr-btn: rgb(39 122 141);
+    --clr-prompt-btn: rgb(39 122 141);
+
+    --clr-widget: rgb(59 181 209);
+    --clr-widget-dk: rgb(47, 149, 172);
+}
