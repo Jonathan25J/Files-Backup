@@ -9,7 +9,8 @@ const api = {
   removeProfile: (uuid) => ipcRenderer.invoke('remove-profile', uuid),
   getBackupSlotsStatuses: (uuid) => ipcRenderer.invoke('get-backup-slots-statuses', uuid),
   backup: (uuid, slot) => ipcRenderer.invoke('backup', uuid, slot),
-  openPath: (path) => ipcRenderer.invoke('shell-open-path', path),
+  openPath: (path) => ipcRenderer.invoke('path-open', path),
+  pathExists: (path) => ipcRenderer.invoke('path-exists', path),
   getProfileFolder: (uuid) => ipcRenderer.invoke('profile-folder', uuid),
 }
 

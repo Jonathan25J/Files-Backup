@@ -115,9 +115,15 @@ export class Profile extends LitElement {
 
     async _restoreWindows(e) {
         e.preventDefault();
-        window.api.openPath(this.shadowRoot.querySelector('#location').value)
-        const profileFolder = await window.api.getProfileFolder(this.id)
-        window.api.openPath(profileFolder)
+        const location = this.shadowRoot.querySelector('#location').value;
+        if (await window.api.pathExists(location)) {
+            window.api.openPath(location);
+        }
+    
+        const profileFolder = await window.api.getProfileFolder(this.id);
+        if (await window.api.pathExists(profileFolder)) {
+            window.api.openPath(profileFolder);
+        }
     }
 
     _backupModal(e) {
