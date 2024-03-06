@@ -1,0 +1,13 @@
+:root {
+    --clr-primary-bg: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+    --clr-primary-bg-dk: #69bed3;
+    --clr-primary-bg-lt: #a2e6f7;
+
+    --clr-header: #1c1c1b;
+    --clr-menu-bg: rgb(75 94 97);
+    --clr-btn: rgb(45 147 187);
+    --clr-prompt-btn: rgb(82 151 163);
+
+    --clr-widget: rgb(161 205 209);
+    --clr-widget-dk: rgb(105 172 241);
+}

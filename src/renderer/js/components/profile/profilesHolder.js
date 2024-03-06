@@ -71,14 +71,13 @@ export class ProfilesHolder extends LitElement {
             flex-direction: column;
             height: 100%;
             width: 100%;
-            background-color: var(--menu-background-color);
+            background-color: var(--clr-menu-bg);
             border-radius: 0.5rem;
         }
 
         .menu {
             display: flex;
             justify-content: flex-end;
-            background-color: var(--menu-background-color);
             border-radius: 0.5rem;
             position: sticky;
             top: 0;

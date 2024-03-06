@@ -174,7 +174,7 @@ export class Profile extends LitElement {
          .container {
             height: 100%;
             width: 100%;
-            background-color: #b1b0b0;
+            background-color: var( --clr-widget);
             border-radius: 0.5rem;
 
         }

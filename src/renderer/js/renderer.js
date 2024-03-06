@@ -1,4 +1,4 @@
 import './components/profile/profilesHolder.js';
+import './components/themeSwitcher.js';
 
-
-// window.electron.ipcRenderer.send('ping')
+document.querySelector('theme-switcher').setOptions(['default', 'blue', 'pink', 'chrome'])
