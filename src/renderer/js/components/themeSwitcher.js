@@ -12,11 +12,12 @@ export class ThemeSwitcher extends LitElement {
     constructor() {
         super()
         this.options = ['default']
-        this.themeSheet = document.querySelector('#themeSheet')
+        this.root = document.documentElement
     }
 
     connectedCallback() {
         super.connectedCallback();
+        this.root.classList = []
 
     }
 
@@ -44,7 +45,8 @@ export class ThemeSwitcher extends LitElement {
 
     async setTheme() {
         const theme = await window.api.get('theme') || 'default'
-        this.themeSheet.setAttribute('href', `../assets/styles/themes/${theme}.css`)
+        this.root.classList = []
+        this.root.classList.add(theme)
         this.themeSwitcher.value = theme
     }
 

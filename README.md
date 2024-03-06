@@ -14,6 +14,13 @@ This application doesn't provide a restore option, so you have to do it ```manua
 The reason for that's because restore will give certain risk and unpredictability (risk of permanent removing necessary files).
 The restore button in this case will only open your file explorer with the path to the slots and your path to backup
 
+# Disclaimer
+
+This is a hobby project so the application ```doesn't update automatically```. To still retain your data you need to backup your ```resources/profiles``` directory.
+After you have done that you can safely install the new .exe and then restore the data into the same directory
+
+The exe doesn't have a signature, because of the same reason it doesn't update automatically. It's a hobby project.
+
 # Images
 <div style="display: flex; gap: 40px; flex-direction: column; align-items: center;">
     <img src="./markdown/images/profiles.png" width=1000 height=500 alt=profiles>
