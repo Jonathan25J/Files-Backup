@@ -103,6 +103,7 @@ export class Modal extends LitElement {
             align-items: center;
             justify-content: center;
             height: 100%;
+            overflow: hidden;
         }
 
         .menu {

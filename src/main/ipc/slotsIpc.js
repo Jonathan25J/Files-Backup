@@ -33,7 +33,6 @@ export const getBackupSlotsStatuses = ipcMain.handle('get-backup-slots-statuses'
 export const backup = ipcMain.handle('backup', (req, uuid, slot) => {
     return new Promise((resolve, reject) => {
         const slotPath = path.join(path.resolve(), `resources/profiles/${uuid}/${slot}`);
-        dataManagement.ensurePath(slotPath)
 
         dataManagement.readData(profilesPath, (err, dataToBeParsed) => {
             if (err) {
@@ -46,6 +45,8 @@ export const backup = ipcMain.handle('backup', (req, uuid, slot) => {
             if (index !== -1) {
                 const location = data.profiles[index].location
                 if (dataManagement.pathExists(location)) {
+                    
+                    dataManagement.ensurePath(slotPath)
 
                     dataManagement.isDirectory(location, (err, isDirectory) => {
                         if (err) {

@@ -101,11 +101,11 @@ export class Profile extends LitElement {
     _deleteProfile() {
         const modal = document.querySelector('modal-widget')
         if (this.getAttribute('new') == null) {
-            window.api.removeProfile(this.id).then((err) => {
-                if (err == null) {
-                    modal.remove()
-                    this.remove()
-                }
+            window.api.removeProfile(this.id).then(() => {
+                modal.remove()
+                this.remove()
+            }).catch(err => {
+                console.log(err)
             })
         } else {
             modal.remove()
@@ -119,7 +119,7 @@ export class Profile extends LitElement {
         if (await window.api.pathExists(location)) {
             window.api.openPath(location);
         }
-    
+
         const profileFolder = await window.api.getProfileFolder(this.id);
         if (await window.api.pathExists(profileFolder)) {
             window.api.openPath(profileFolder);
@@ -135,13 +135,18 @@ export class Profile extends LitElement {
             let index = 1
             statuses.forEach((status) => {
                 let currentIndex = index
-                buttons[index] = { color: "", status: status, function: () => this._createBackup(this.id, currentIndex) }
+                buttons[index] = { color: "", status: status, function: () => this._createBackupModal(this.id, currentIndex) }
                 index++
             })
             buttonModal.createButtons(buttons)
         })
 
 
+    }
+
+    _createBackupModal(id, slot) {
+        const modal = document.createElement('modal-widget')
+        modal.setPrompt("Backup to slot", `Do you want to backup to slot ${slot}?`, this._createBackup.bind(this, this.id, slot))
     }
 
     _createBackup(id, slot) {
@@ -153,6 +158,8 @@ export class Profile extends LitElement {
             // electron's fault
             slotMessage.innerHTML = error.message.split(':')[2].trim()
         })
+        const modal = document.querySelector('modal-widget')
+        modal.remove()
     }
 
     static get styles() {
