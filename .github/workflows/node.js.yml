@@ -26,5 +26,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Install Wine
+      run: sudo apt-get install --no-install-recommends wine
+      
     - run: npm ci
     - run: npm run build:win
