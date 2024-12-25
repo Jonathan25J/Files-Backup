@@ -11,14 +11,12 @@ With this application is it possible to create backups for specific  ```files```
 It's possible to store up to a ```100``` slots.
 
 This application doesn't provide a restore option, so you have to do it ```manually```.
-The reason for that's because restore will give certain risk and unpredictability (risk of permanent removing necessary files).
-The restore button in this case will only open your file explorer with the path to the slots and your path to backup.
+The reason for that is because automatically restoring will give certain risk and unpredictability (risk of permanent removing necessary files).
+So the restore button will only open your file explorer with the path to the slots and your path to backup.
 
 # Disclaimer
 
-This is a hobby project so the application ```doesn't update automatically```.
-
-The exe doesn't have a signature, because of the same reason it doesn't update automatically. It's a hobby project.
+This is a hobby project so the application ```doesn't update automatically``` and the provided installation file doesn't have a signature.
 
 # Images
 <div style="display: flex; gap: 40px; flex-direction: column; align-items: center;">
